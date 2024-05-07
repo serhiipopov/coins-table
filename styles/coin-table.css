@@ -1,0 +1,45 @@
+/* Styles for coin tables */
+
+.coin-table {
+  @apply w-full table-fixed;
+}
+
+.coin-table thead {
+  @apply border-y border-gray-300 text-black;
+}
+
+.coin-table thead th:last-child {
+  @apply w-16;
+}
+
+.coin-table tr {
+  @apply border-y border-gray-300;
+}
+
+.coin-table th:first-child {
+  @apply w-32 border-x border-gray-300 px-3 py-3;
+}
+
+.coin-table th:last-child {
+  @apply w-32 border-x border-gray-300 px-3 py-3;
+}
+
+.coin-table th {
+  @apply border-x px-3 py-4 text-center;
+}
+
+.coin-table tbody {
+  @apply border border-gray-300 text-black;
+}
+
+.coin-table td:first-child {
+  @apply border-x border-gray-300 px-2 py-2;
+}
+
+.coin-table td:last-child {
+  @apply border-x border-y border-gray-300 px-3 py-3;
+}
+
+.coin-table td {
+  @apply px-3 py-3 text-center;
+}
