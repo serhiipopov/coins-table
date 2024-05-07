@@ -1,5 +1,5 @@
-import { CoinTableProps } from './CoinTable.types'
 import { Strings } from '@/constants'
+import { CoinTableProps } from '@/components'
 
 export const CoinTable = ({ coins }: CoinTableProps) => {
   return (
@@ -9,6 +9,7 @@ export const CoinTable = ({ coins }: CoinTableProps) => {
           <th>{Strings.name}</th>
           <th>{Strings.purchasePrice}</th>
           <th>{Strings.sellingPrice}</th>
+          <th>{Strings.averagePrice}</th>
           <th>{Strings.reasonForPurchase}</th>
           <th>{Strings.reasonForSale}</th>
           <th></th>
@@ -23,7 +24,7 @@ export const CoinTable = ({ coins }: CoinTableProps) => {
           ))
         ) : (
           <tr>
-            <td colSpan={5}>
+            <td colSpan={6}>
               <span>No results</span>
             </td>
           </tr>

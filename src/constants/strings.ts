@@ -5,4 +5,6 @@ export enum Strings {
   averagePrice = 'Average price',
   reasonForPurchase = 'Reason for purchase',
   reasonForSale = 'Reason for sale',
+  addPortfolio = 'Add Portfolio',
+  addCoin = 'Add Coin',
 }
