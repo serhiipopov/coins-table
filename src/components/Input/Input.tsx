@@ -43,7 +43,7 @@ export const Input = ({
       {label && (
         <label
           htmlFor={id}
-          className={twMerge(`pb-1 text-grey-dark`, labelClassName)}
+          className={twMerge(`text-grey-dark pb-1`, labelClassName)}
         >
           {label}
         </label>
@@ -51,11 +51,10 @@ export const Input = ({
 
       <div
         className={twMerge(
-          `focus:ring-border-dark flex h-12 w-full gap-1 border border-grey-medium
-        bg-primary-white focus-within:border-primary-dark
-        hover:border-primary-dark focus:border-primary-dark`,
+          ` focus:ring-border-dark border-grey-medium bg-primary-white focus-within:border-primary-dark hover:border-primary-dark focus:border-primary-dark flex h-12 w-full
+        gap-1 rounded-lg border`,
           disabled &&
-            'cursor-not-allowed border-grey-pale bg-grey-pale hover:border-transparent',
+            'border-grey-pale bg-grey-pale cursor-not-allowed hover:border-transparent',
           isError && 'border-states-error hover:border-states-error',
           wrapperClassName,
         )}
@@ -73,9 +72,9 @@ export const Input = ({
           type={isPasswordType ? toggleType : type}
           disabled={disabled}
           className={twMerge(
-            `no-arrows-input-number w-full flex-1 border-0 bg-primary-white p-0 px-3 
-            leading-6 shadow-none placeholder:translate-x-1 placeholder:text-grey-medium
-            focus:shadow-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:bg-grey-pale`,
+            `no-arrows-input-number bg-primary-white placeholder:text-grey-medium disabled:bg-grey-pale w-full flex-1 rounded-lg border-0 
+            p-0 px-3 leading-6 shadow-none
+            placeholder:translate-x-1 focus:shadow-none focus:outline-none focus:ring-0 disabled:cursor-not-allowed`,
             leftIcon && 'pl-0',
             (rightIcon || isPasswordType) && 'pr-0',
             inputClassName,
@@ -96,13 +95,13 @@ export const Input = ({
       </div>
 
       {isError && error && (
-        <span className={twMerge('pt-1 text-states-error', errorClassName)}>
+        <span className={twMerge('text-states-error pt-1', errorClassName)}>
           {error}
         </span>
       )}
 
       {hint && (
-        <div className={twMerge('pt-1 text-grey-dark', hintClassName)}>
+        <div className={twMerge('text-grey-dark pt-1', hintClassName)}>
           {hint}
         </div>
       )}

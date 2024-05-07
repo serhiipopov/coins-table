@@ -47,10 +47,13 @@ export const Modal = ({
           className={backdropClassName}
           onClick={cancelCallback}
         >
-          <div className='relative flex min-h-5 flex-row'>
+          <div
+            className='relative flex min-h-5 flex-row'
+            onClick={e => e.stopPropagation()}
+          >
             {hasCloseIcon ? (
               <Close
-                className='absolute right-1.5 top-1.5 cursor-pointer hover:stroke-grey-dark'
+                className='hover:stroke-grey-dark absolute right-1.5 top-1.5 cursor-pointer'
                 onClick={cancelCallback}
               ></Close>
             ) : null}
