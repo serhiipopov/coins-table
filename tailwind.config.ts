@@ -11,15 +11,20 @@ const config: Config = {
       colors: {
         primary: {
           black: '#111111',
-          dark: '#2e2d2c',
+          dark: '#1E2434',
           white: '#ffffff',
         },
         grey: {
-          dark: '#7b7a79',
+          dark: '#7079a8',
           medium: '#d5d5d5',
           light: '#eeebe9',
           pale: '#f7f6f5',
           secondary: '#666666',
+        },
+        blu: {
+          black: '#111111',
+          dark: '#1E2434',
+          medium: '#7079A8FF',
         },
         states: {
           error: '#db5c4e',

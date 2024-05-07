@@ -93,7 +93,6 @@ export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
       }}
     >
       {children}
-
       <Modal
         isOpen={showModal}
         cancelCallback={handleModalClose}

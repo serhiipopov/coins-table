@@ -6,12 +6,12 @@ export const CoinTable = ({ coins }: CoinTableProps) => {
     <table className='coin-table'>
       <thead>
         <tr>
-          <th>{Strings.name}</th>
-          <th>{Strings.purchasePrice}</th>
-          <th>{Strings.sellingPrice}</th>
-          <th>{Strings.averagePrice}</th>
-          <th>{Strings.reasonForPurchase}</th>
-          <th>{Strings.reasonForSale}</th>
+          <th className='text-primary-dark'>{Strings.name}</th>
+          <th className='text-primary-dark'>{Strings.purchasePrice}</th>
+          <th className='text-primary-dark'>{Strings.sellingPrice}</th>
+          <th className='text-primary-dark'>{Strings.averagePrice}</th>
+          <th className='text-primary-dark'>{Strings.reasonForPurchase}</th>
+          <th className='text-primary-dark'>{Strings.reasonForSale}</th>
           <th></th>
         </tr>
       </thead>
@@ -19,7 +19,7 @@ export const CoinTable = ({ coins }: CoinTableProps) => {
         {coins.length > 0 ? (
           coins.map((item, i) => (
             <tr key={i}>
-              <td>{item.name}</td>
+              <td className='text-primary-dark'>{item.name}</td>
             </tr>
           ))
         ) : (

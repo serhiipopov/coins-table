@@ -43,7 +43,7 @@ export const Input = ({
       {label && (
         <label
           htmlFor={id}
-          className={twMerge(`text-grey-dark pb-1`, labelClassName)}
+          className={twMerge(`text-blu-dark' pb-1`, labelClassName)}
         >
           {label}
         </label>
@@ -51,7 +51,7 @@ export const Input = ({
 
       <div
         className={twMerge(
-          ` focus:ring-border-dark border-grey-medium bg-primary-white focus-within:border-primary-dark hover:border-primary-dark focus:border-primary-dark flex h-12 w-full
+          ` focus:ring-border-dark border-grey-medium bg-primary-white focus-within:border-blu-dark hover:border-blu-dark focus:border-blu-dark flex h-12 w-full
         gap-1 rounded-lg border`,
           disabled &&
             'border-grey-pale bg-grey-pale cursor-not-allowed hover:border-transparent',
