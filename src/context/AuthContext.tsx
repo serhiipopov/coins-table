@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react'
 import { onAuthStateChanged, getAuth, User } from 'firebase/auth'
-import firebase_app from '../../firebase/firebase'
+import firebase_app from '../../lib/firebaseConfig'
 
 const auth = getAuth(firebase_app)
 

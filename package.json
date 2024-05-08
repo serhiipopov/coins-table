@@ -11,14 +11,17 @@
   },
   "dependencies": {
     "@firebase/app-types": "^0.9.1",
+    "@hookform/resolvers": "^3.3.4",
     "@next/env": "^14.2.3",
     "@types/react-transition-group": "^4.4.10",
     "firebase": "^10.11.1",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.51.4",
     "react-transition-group": "^4.4.5",
-    "tailwind-merge": "^2.3.0"
+    "tailwind-merge": "^2.3.0",
+    "zod": "^3.23.7"
   },
   "devDependencies": {
     "@types/node": "^20",

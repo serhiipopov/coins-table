@@ -1,11 +1,11 @@
 /* Styles for coins tables */
 
 .coin-table {
-  @apply w-full table-auto;
+  @apply w-full table-auto overflow-hidden;
 }
 
 .coin-table thead {
-  @apply border-y border-gray-300 text-sm;
+  @apply text-sm;
 }
 
 .coin-table thead th:last-child {
@@ -13,7 +13,7 @@
 }
 
 .coin-table tr {
-  @apply border-y border-gray-300;
+  @apply border border-gray-300;
 }
 
 .coin-table th:first-child {
@@ -33,11 +33,11 @@
 }
 
 .coin-table td:first-child {
-  @apply border-x border-gray-300 px-2 py-2;
+  @apply border-gray-300 px-2 py-2;
 }
 
 .coin-table td:last-child {
-  @apply border-x border-y border-gray-300 px-3 py-3;
+  @apply border-y border-gray-300 px-3 py-3;
 }
 
 .coin-table td {

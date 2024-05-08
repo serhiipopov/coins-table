@@ -20,6 +20,11 @@ export const CoinTable = ({ coins }: CoinTableProps) => {
           coins.map((item, i) => (
             <tr key={i}>
               <td className='text-primary-dark'>{item.name}</td>
+              <td className='text-primary-dark'>{item.purchasePrice}</td>
+              <td className='text-primary-dark'>{item.sellingPrice}</td>
+              <td className='text-primary-dark'>{item.averagePrice}</td>
+              <td className='text-primary-dark'>{item.reasonForPurchase}</td>
+              <td className='text-primary-dark'>{item.reasonForSale}</td>
             </tr>
           ))
         ) : (
