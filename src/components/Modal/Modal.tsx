@@ -53,7 +53,7 @@ export const Modal = ({
           >
             {hasCloseIcon ? (
               <Close
-                className='hover:stroke-grey-dark absolute right-1.5 top-1.5 cursor-pointer'
+                className='absolute right-1.5 top-1.5 cursor-pointer hover:stroke-grey-dark'
                 onClick={cancelCallback}
               ></Close>
             ) : null}

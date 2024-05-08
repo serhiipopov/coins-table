@@ -1,7 +1,7 @@
 /* Styles for coins tables */
 
 .coin-table {
-  @apply w-full table-auto overflow-hidden;
+  @apply w-full table-fixed overflow-hidden;
 }
 
 .coin-table thead {

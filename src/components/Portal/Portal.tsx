@@ -23,7 +23,7 @@ export const Portal = ({ children, wrapperId }: PortalProps) => {
     }
 
     setWrapperElement(element)
-  }, [])
+  }, [wrapperId])
 
   if (!wrapperElement) {
     return null

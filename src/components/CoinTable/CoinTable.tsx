@@ -25,6 +25,7 @@ export const CoinTable = ({ coins }: CoinTableProps) => {
               <td className='text-primary-dark'>{item.averagePrice}</td>
               <td className='text-primary-dark'>{item.reasonForPurchase}</td>
               <td className='text-primary-dark'>{item.reasonForSale}</td>
+              <td></td>
             </tr>
           ))
         ) : (

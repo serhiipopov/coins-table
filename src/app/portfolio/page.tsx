@@ -5,7 +5,7 @@ import { collection, DocumentData, getDocs } from '@firebase/firestore'
 
 import { Button, CoinTable, AddCoinForm } from '@/components'
 import { FirebasePath, Strings } from '@/constants'
-import { useModal } from '@/context/ModalContext'
+import { useModal } from '@/context'
 import db from '../../../lib/firestore'
 
 const Portfolio = () => {

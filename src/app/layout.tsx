@@ -10,7 +10,8 @@ const wixMadeforDisplay = Wix_Madefor_Display({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Coins Table',
-  description: 'Your coins table',
+  description:
+    'An application for displaying purchased tokens and their characteristics in a table format',
 }
 
 const portfolio = [{ name: 'Main' }, { name: 'Second' }]
@@ -23,8 +24,8 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <Header />
         <Providers>
+          <Header />
           <Sidebar portfolio={portfolio} />
           <main className={wixMadeforDisplay.className}>{children}</main>
         </Providers>
