@@ -18,4 +18,6 @@ export enum Strings {
   mustOneSpecial = 'Must Contain One Special Case Character',
   minPassword = 'Password must be at least 8 characters long',
   passwordsDontMatch = `Passwords Don't Match`,
+  portfolio = 'Portfolio',
+  home = 'Home',
 }

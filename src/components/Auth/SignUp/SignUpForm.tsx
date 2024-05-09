@@ -2,17 +2,24 @@ import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { Button, Input } from '@/components'
-import { Strings } from '@/constants'
+import { Strings, Urls } from '@/constants'
 import {
   SignUpFormModel,
   sigUpFormSchema,
   sigUpFormInitialValues,
 } from '@/components/Auth'
+import { useAuth, useModal } from '@/context'
+import { useRouter } from 'next/navigation'
 
 export const SignUpForm = () => {
+  const { signUp } = useAuth()
+  const { handleModalSubmit } = useModal()
+  const router = useRouter()
+
   const {
     control,
     handleSubmit,
+    watch,
     resetField,
     formState: { errors },
   } = useForm<SignUpFormModel>({
@@ -21,32 +28,39 @@ export const SignUpForm = () => {
   })
 
   const resetSignUpFields = () => {
-    resetField('name')
+    // resetField('name')
     resetField('email')
     resetField('password')
-    resetField('confirmPassword')
+    // resetField('confirmPassword')
   }
 
-  const onSubmit = async () => {}
+  const onSubmit = async () => {
+    try {
+      handleModalSubmit(await signUp(watch('email'), watch('password')))
+      resetSignUpFields()
+    } catch (error: any) {
+      console.log(error.message)
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className='flex w-96 flex-col gap-4 rounded-lg bg-gray-100 p-8 shadow-2xl'>
-        <Controller
-          control={control}
-          name='name'
-          render={({ field: { onChange, value, name } }) => (
-            <Input
-              label={`${Strings.name} *`}
-              name={name}
-              data-qa='name'
-              value={value}
-              isError={!!errors?.name}
-              error={errors?.name?.message?.toString()}
-              onChange={onChange}
-            />
-          )}
-        />
+        {/*<Controller*/}
+        {/*  control={control}*/}
+        {/*  name='name'*/}
+        {/*  render={({ field: { onChange, value, name } }) => (*/}
+        {/*    <Input*/}
+        {/*      label={`${Strings.name} *`}*/}
+        {/*      name={name}*/}
+        {/*      data-qa='name'*/}
+        {/*      value={value}*/}
+        {/*      isError={!!errors?.name}*/}
+        {/*      error={errors?.name?.message?.toString()}*/}
+        {/*      onChange={onChange}*/}
+        {/*    />*/}
+        {/*  )}*/}
+        {/*/>*/}
         <Controller
           control={control}
           name='email'
@@ -78,22 +92,22 @@ export const SignUpForm = () => {
             />
           )}
         />
-        <Controller
-          control={control}
-          name='confirmPassword'
-          render={({ field: { onChange, value, name } }) => (
-            <Input
-              label={`${Strings.confirmPassword} *`}
-              name={name}
-              data-qa='confirm-password'
-              type='password'
-              value={value}
-              isError={!!errors?.confirmPassword}
-              error={errors?.confirmPassword?.message?.toString()}
-              onChange={onChange}
-            />
-          )}
-        />
+        {/*<Controller*/}
+        {/*  control={control}*/}
+        {/*  name='confirmPassword'*/}
+        {/*  render={({ field: { onChange, value, name } }) => (*/}
+        {/*    <Input*/}
+        {/*      label={`${Strings.confirmPassword} *`}*/}
+        {/*      name={name}*/}
+        {/*      data-qa='confirm-password'*/}
+        {/*      type='password'*/}
+        {/*      value={value}*/}
+        {/*      isError={!!errors?.confirmPassword}*/}
+        {/*      error={errors?.confirmPassword?.message?.toString()}*/}
+        {/*      onChange={onChange}*/}
+        {/*    />*/}
+        {/*  )}*/}
+        {/*/>*/}
 
         <Button className='block rounded-xl py-3' type='submit'>
           <span>{Strings.signUp}</span>

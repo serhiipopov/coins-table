@@ -3,7 +3,7 @@ import { Strings } from '@/constants'
 
 export const Sidebar = ({ portfolio }: SidebarProps) => {
   return (
-    <div className='fixed left-0 h-[calc(100vh-2rem)] w-full max-w-64 p-4 px-4 py-12'>
+    <div className='fixed left-0 h-[calc(100vh-2rem)] w-full max-w-64 px-4'>
       <Button className='mb-2'>
         <span>{Strings.addPortfolio}</span>
       </Button>

@@ -2,17 +2,24 @@ import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { Button, Input } from '@/components'
-import { Strings } from '@/constants'
+import { Strings, Urls } from '@/constants'
 import {
   logInFormInitialValues,
   LogInFormModel,
   logInFormSchema,
 } from './LogInFormSchema'
+import { useAuth, useModal } from '@/context'
+import { useRouter } from 'next/navigation'
 
 export const LogInForm = () => {
+  const { logIn } = useAuth()
+  const { handleModalSubmit } = useModal()
+  const router = useRouter()
+
   const {
     control,
     handleSubmit,
+    watch,
     resetField,
     formState: { errors },
   } = useForm<LogInFormModel>({
@@ -20,12 +27,20 @@ export const LogInForm = () => {
     resolver: zodResolver(logInFormSchema),
   })
 
-  const resetSignUpFields = () => {
+  const resetLogInFields = () => {
     resetField('email')
     resetField('password')
   }
 
-  const onSubmit = async () => {}
+  const onSubmit = async () => {
+    try {
+      handleModalSubmit(await logIn(watch('email'), watch('password')))
+      router.push(Urls.PORTFOLIO)
+      resetLogInFields()
+    } catch (error: any) {
+      console.log(error.message)
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

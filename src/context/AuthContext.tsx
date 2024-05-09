@@ -1,56 +1,58 @@
-'use client'
-
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import {
-  createContext,
-  FC,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react'
-import { onAuthStateChanged, getAuth, User } from 'firebase/auth'
-import firebase_app from '../../lib/firebaseConfig'
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth'
+import { auth } from '../../lib/firebaseConfig'
 
-const auth = getAuth(firebase_app)
-
-interface AuthContextProps {
-  user: User | null
+interface UserType {
+  email: string | null
+  uid: string | null
 }
 
-export const AuthContext = createContext<AuthContextProps>({ user: null })
+const AuthContext = createContext({})
 
-export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState(true)
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [user, setUser] = useState<UserType>({ email: null, uid: null })
+  const [loading, setLoading] = useState<Boolean>(true)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       if (user) {
-        setUser(user)
+        setUser({
+          email: user.email,
+          uid: user.uid,
+        })
       } else {
-        setUser(null)
+        setUser({ email: null, uid: null })
       }
-      setLoading(false)
     })
+
+    setLoading(false)
 
     return () => unsubscribe()
   }, [])
 
+  const signUp = (email: string, password: string) => {
+    return createUserWithEmailAndPassword(auth, email, password)
+  }
+
+  const logIn = (email: string, password: string) => {
+    return signInWithEmailAndPassword(auth, email, password)
+  }
+
+  const logOut = async () => {
+    setUser({ email: null, uid: null })
+    return await signOut(auth)
+  }
+
   return (
-    <AuthContext.Provider value={{ user }}>
-      {loading ? <div>Loading...</div> : children}
+    <AuthContext.Provider value={{ user, signUp, logIn, logOut }}>
+      {loading ? null : children}
     </AuthContext.Provider>
   )
 }
 
-export const useAuth = () => {
-  const context = useContext(AuthContext)
-
-  if (Object.keys(context).length === 0) {
-    throw new Error('Please provide AuthProvider')
-  }
-
-  return context
-}
-
-export default AuthProvider
+export const useAuth = () => useContext<any>(AuthContext)

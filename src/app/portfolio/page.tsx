@@ -3,10 +3,12 @@
 import { useCallback, useEffect, useState } from 'react'
 import { collection, DocumentData, getDocs } from '@firebase/firestore'
 
-import { Button, CoinTable, AddCoinForm } from '@/components'
+import { Button, CoinTable, AddCoinForm, Sidebar } from '@/components'
 import { FirebasePath, Strings } from '@/constants'
 import { useModal } from '@/context'
 import db from '../../../lib/firestore'
+
+const portfolio = [{ name: 'Main' }, { name: 'Second' }]
 
 const Portfolio = () => {
   const { openModal } = useModal()
@@ -39,6 +41,8 @@ const Portfolio = () => {
 
   return (
     <div className='ml-60 flex flex-col place-items-end p-12'>
+      <Sidebar portfolio={portfolio} />
+
       <Button className='mb-4 block' onClick={handleModal}>
         <span>{Strings.addCoin}</span>
       </Button>
