@@ -8,8 +8,8 @@ export const Sidebar = ({ portfolios, handleModal }: SidebarProps) => {
         <span>{Strings.addPortfolio}</span>
       </Button>
 
-      <div className='my-2 border-px' />
-      <p className='py-4 text-center font-bold text-blu-dark'>
+      <div className='border-px my-2' />
+      <p className='text-blu-dark py-4 text-center font-bold'>
         {Strings.myPortfolios}
       </p>
       <ul className='pt-3'>

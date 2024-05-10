@@ -1,9 +1,10 @@
 import { Strings } from '@/constants'
-import { CoinsTableProps } from '@/components'
+import { CoinsTableProps, IconButton, ItemActions, Popover } from '@/components'
+import { MoreHorizontal } from '@/components/Icons'
 
 export const CoinsTable = ({ coins }: CoinsTableProps) => {
   return (
-    <table className='coin-table'>
+    <table className='coins-table'>
       <thead>
         <tr>
           <th className='text-blu-dark'>№</th>
@@ -27,7 +28,21 @@ export const CoinsTable = ({ coins }: CoinsTableProps) => {
               <td className='text-blu-dark'>{item.averagePrice}</td>
               <td className='text-blu-dark'>{item.reasonForPurchase}</td>
               <td className='text-blu-dark'>{item.reasonForSale}</td>
-              <td className='text-blu-dark'></td>
+              <td>
+                <Popover
+                  content={
+                    <ItemActions
+                      firstText={Strings.editCoin}
+                      secondText={Strings.deleteCoin}
+                    />
+                  }
+                  contentClassName='right-8 -top-6 w-max px-2'
+                >
+                  <IconButton className='transition-transform duration-300 hover:scale-125'>
+                    <MoreHorizontal className='stroke-grey-secondary' />
+                  </IconButton>
+                </Popover>
+              </td>
             </tr>
           ))
         ) : (

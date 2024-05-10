@@ -1,18 +1,24 @@
-import { PortfolioItemProps } from './PortfolioItem.types'
-import { IconButton, Popover, PortfolioActions } from '@/components'
+import { IconButton, ItemActions, Popover } from '@/components'
 import { MoreVertical } from '@/components/Icons'
+import { PortfolioItemProps } from './PortfolioItem.types'
+import { Strings } from '@/constants'
 
 export const PortfolioItem = ({ name }: PortfolioItemProps) => {
   return (
-    <div className='flex items-center justify-between rounded-xl px-3 py-2 duration-150 hover:cursor-pointer hover:bg-ext-light'>
-      <p className='font-bold text-blu-dark'>{name}</p>
+    <div className='hover:bg-ext-light flex items-center justify-between rounded-xl px-3 py-2 duration-150 hover:cursor-pointer'>
+      <p className='text-blu-dark text-sm font-bold'>{name}</p>
       <div>
         <Popover
-          content={<PortfolioActions />}
+          content={
+            <ItemActions
+              firstText={Strings.editPortfolio}
+              secondText={Strings.deletePortfolio}
+            />
+          }
           contentClassName='left-12 -top-6 w-max px-2'
         >
           <IconButton className='transition-transform duration-300 hover:scale-125'>
-            <MoreVertical className='stroke-grey-secondary' />
+            <MoreVertical className='stroke-grey-secondary' width={18} />
           </IconButton>
         </Popover>
       </div>

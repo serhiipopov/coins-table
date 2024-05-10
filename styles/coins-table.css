@@ -1,45 +1,45 @@
 /* Styles for coins tables */
 
-.coin-table {
-  @apply w-full table-fixed overflow-hidden;
+.coins-table {
+  @apply w-full table-fixed;
 }
 
-.coin-table thead {
+.coins-table thead {
   @apply text-sm;
 }
 
-.coin-table thead th:last-child {
+.coins-table thead th:last-child {
   @apply w-16;
 }
 
-.coin-table tr {
+.coins-table tr {
   @apply border border-gray-300;
 }
 
-.coin-table th:first-child {
+.coins-table th:first-child {
   @apply w-32 border-x border-gray-300 px-3 py-3;
 }
 
-.coin-table th:last-child {
+.coins-table th:last-child {
   @apply w-32 border-x border-gray-300 px-3 py-3;
 }
 
-.coin-table th {
+.coins-table th {
   @apply border-x px-3 py-4 text-center;
 }
 
-.coin-table tbody {
+.coins-table tbody {
   @apply border border-gray-300 text-black;
 }
 
-.coin-table td:first-child {
+.coins-table td:first-child {
   @apply border-gray-300 px-2 py-2;
 }
 
-.coin-table td:last-child {
+.coins-table td:last-child {
   @apply border-y border-gray-300 px-3 py-3;
 }
 
-.coin-table td {
+.coins-table td {
   @apply px-3 py-3 text-center;
 }

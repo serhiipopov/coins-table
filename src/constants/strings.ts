@@ -26,5 +26,7 @@ export enum Strings {
   actions = 'Actions',
   editPortfolio = 'Edit portfolio',
   deletePortfolio = 'Delete portfolio',
+  editCoin = 'Edit coin',
+  deleteCoin = 'Delete coin',
   myPortfolios = 'My portfolios',
 }
