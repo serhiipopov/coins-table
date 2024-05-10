@@ -1,4 +1,12 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+'use client'
+
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -6,6 +14,7 @@ import {
   signOut,
 } from 'firebase/auth'
 import { auth } from '../../lib/firebaseConfig'
+import { generateRandomColor } from '../../utils'
 
 interface UserType {
   email: string | null
@@ -14,9 +23,11 @@ interface UserType {
 
 const AuthContext = createContext({})
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<UserType>({ email: null, uid: null })
-  const [loading, setLoading] = useState<Boolean>(true)
+  const [colorAvatar, setColorAvatar] = useState<string>('')
+  const [isAuth, setIsAuth] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
@@ -40,16 +51,22 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }
 
   const logIn = (email: string, password: string) => {
-    return signInWithEmailAndPassword(auth, email, password)
+    const bgColor = generateRandomColor()
+    setColorAvatar(bgColor)
+    setIsAuth(true)
+    signInWithEmailAndPassword(auth, email, password)
   }
 
   const logOut = async () => {
+    setIsAuth(false)
     setUser({ email: null, uid: null })
     return await signOut(auth)
   }
 
   return (
-    <AuthContext.Provider value={{ user, signUp, logIn, logOut }}>
+    <AuthContext.Provider
+      value={{ user, signUp, logIn, logOut, colorAvatar, isAuth }}
+    >
       {loading ? null : children}
     </AuthContext.Provider>
   )

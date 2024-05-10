@@ -1,25 +1,21 @@
 'use client'
 
 import { useCallback } from 'react'
-import { Avatar, Button } from '@/components'
+import { Anchor, Avatar, AvatarContent, Button, Popover } from '@/components'
 import { Strings, Urls } from '@/constants'
 import { LogInForm, SignUpForm } from '@/components/Auth'
 import { useAuth, useModal } from '@/context'
-import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { getFirstLetter } from '../../../utils'
 
 export const Header = () => {
   const { openModal } = useModal()
-  const { user } = useAuth()
-  const { push } = useRouter()
+  const { user, colorAvatar, isAuth } = useAuth()
 
   const firstLetter = getFirstLetter(user.email)
 
   const argsSignUp = {
     content: <SignUpForm />,
   }
-
   const argsLogIn = {
     content: <LogInForm />,
   }
@@ -39,35 +35,35 @@ export const Header = () => {
   return (
     <header className='z-50 box-border flex h-14 w-full flex-row items-center justify-between bg-white px-6 shadow'>
       <div className='flex items-center gap-20'>
-        <p className='text-sm font-bold'>CoinTable</p>
+        <p className='text-sm font-bold'>CoinsTable</p>
         <div className='flex items-center gap-3'>
-          <Link
-            className='hover:text-grey-dark hover:underline'
-            href={Urls.HOME}
-          >
-            {Strings.home}
-          </Link>
-          <Link
-            className='hover:text-grey-dark hover:underline'
-            href={Urls.PORTFOLIO}
-          >
-            {Strings.portfolio}
-          </Link>
+          <Anchor url={Urls.HOME} text={Strings.home} primary={false} />
+          <Anchor
+            url={Urls.PORTFOLIO}
+            text={Strings.portfolios}
+            primary={false}
+          />
         </div>
       </div>
 
-      {!user ? (
+      {!isAuth ? (
         <div className='flex gap-2'>
           <Button kind='secondary' className='py-1' onClick={handleLogInModal}>
             <span>{Strings.logIn}</span>
           </Button>
-
           <Button className='py-1' onClick={handleSignUpModal}>
             <span>{Strings.signUp}</span>
           </Button>
         </div>
       ) : (
-        <Avatar letter={firstLetter ?? ''} />
+        <Popover
+          content={
+            <AvatarContent letter={firstLetter ?? ''} bgColor={colorAvatar} />
+          }
+          contentClassName='p-4 w-72'
+        >
+          <Avatar letter={firstLetter ?? ''} bgColor={colorAvatar} isMain />
+        </Popover>
       )}
     </header>
   )

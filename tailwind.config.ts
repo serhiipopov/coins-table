@@ -25,6 +25,7 @@ const config: Config = {
           black: '#111111',
           dark: '#1E2434',
           medium: '#7079A8FF',
+          light: '#e7e8f3',
         },
         states: {
           error: '#db5c4e',
@@ -35,6 +36,9 @@ const config: Config = {
           light: '#f4f2ef',
           overlay: 'rgba(30, 30, 30, 0.6)',
         },
+      },
+      borderWidth: {
+        px: '0.5px',
       },
     },
   },

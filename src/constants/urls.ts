@@ -1,4 +1,5 @@
 export enum Urls {
   HOME = '/',
-  PORTFOLIO = '/portfolio',
+  PORTFOLIO = '/portfolios',
+  PROFILE = '/profile',
 }

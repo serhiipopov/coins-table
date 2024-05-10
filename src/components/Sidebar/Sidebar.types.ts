@@ -1,3 +1,4 @@
 export interface SidebarProps {
-  portfolio: any[]
+  portfolios: any[]
+  handleModal: () => void
 }
