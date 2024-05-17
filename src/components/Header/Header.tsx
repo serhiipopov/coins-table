@@ -1,12 +1,12 @@
 'use client'
 
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { Anchor, Avatar, AvatarContent, Button, Popover } from '@/components'
 import { LocalStorageKeys, Strings, Urls } from '@/constants'
-import { LogInForm, SignUpForm } from '@/components/Auth'
 import { useAuth, useModal } from '@/context'
 import { getFirstLetter } from '../../../utils'
 import { useLocalStorage } from '@/hooks'
+import { Auth } from '@/components/Auth/Auth'
 
 export const Header = () => {
   const { openModal } = useModal()
@@ -15,11 +15,11 @@ export const Header = () => {
 
   const firstLetter = getFirstLetter(user?.email)
 
-  const argsSignUp = {
-    content: <SignUpForm />,
-  }
   const argsLogIn = {
-    content: <LogInForm />,
+    content: <Auth type='logIn' />,
+  }
+  const argsSignUp = {
+    content: <Auth type='signUp' />,
   }
 
   const handleLogInModal = useCallback(() => {

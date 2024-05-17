@@ -1,6 +1,11 @@
 import { Strings } from '@/constants'
-import { CoinsTableProps, IconButton, ItemActions, Popover } from '@/components'
-import { MoreHorizontal } from '@/components/Icons'
+import {
+  CoinsTableProps,
+  IconButton,
+  ItemActions,
+  Popover,
+  MoreHorizontal,
+} from '@/components'
 
 export const CoinsTable = ({ coins, handleDeleteCoin }: CoinsTableProps) => {
   return (

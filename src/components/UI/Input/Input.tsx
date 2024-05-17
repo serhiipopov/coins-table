@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { IconButton, InputProps } from '@/components'
-import { Eye } from '@/components/Icons'
+import { Eye } from '../Icons'
 
 export const Input = ({
   id,

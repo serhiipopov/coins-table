@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Controller, useForm } from 'react-hook-form'
@@ -12,13 +14,12 @@ import {
 } from './LogInFormSchema'
 import { useAuth, useModal } from '@/context'
 import { getAuthErrorMessage } from '../../../../utils'
-import Link from 'next/link'
 
 export const LogInForm = () => {
-  const { logIn, errorMessage } = useAuth()
+  const { logIn } = useAuth()
   const { handleModalSubmit, handleModalClose } = useModal()
   const [loginError, setLoginError] = useState('')
-  const { push, refresh } = useRouter()
+  const { push } = useRouter()
 
   const {
     control,
@@ -59,7 +60,7 @@ export const LogInForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='flex w-96 flex-col gap-4 rounded-lg bg-gray-100 p-6 shadow-2xl'>
+      <div className='flex w-full flex-col gap-4 pt-4'>
         <Controller
           control={control}
           name='email'

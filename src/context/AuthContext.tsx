@@ -13,12 +13,12 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
+import { FirebaseError } from '@firebase/util'
 import { auth } from '../../lib/firebaseConfig'
 import { generateRandomColor, getAuthErrorMessage } from '../../utils'
 import { User } from 'firebase/auth'
 import { useLocalStorage } from '@/hooks'
 import { LocalStorageKeys } from '@/constants'
-import { FirebaseError } from '@firebase/util'
 
 const AuthContext = createContext({})
 
@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       if (user) {
         setUser({ ...user })
-        setIsAuth(!!user)
+        // setIsAuth(!!user)
       } else {
         setUser(null)
       }

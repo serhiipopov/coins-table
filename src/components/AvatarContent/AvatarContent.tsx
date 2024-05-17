@@ -3,7 +3,7 @@
 import { Strings, Urls } from '@/constants'
 import { Anchor, Avatar, AvatarContentProps } from '@/components'
 import { useAuth } from '@/context'
-import { Exit, Settings } from '@/components/Icons'
+import { Exit, Settings } from '@/components/UI/Icons'
 
 export const AvatarContent = ({ letter, bgColor }: AvatarContentProps) => {
   const { logOut, user } = useAuth()

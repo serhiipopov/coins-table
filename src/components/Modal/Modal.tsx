@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge'
 import { CSSTransition } from 'react-transition-group'
 
 import { Portal, ModalProps } from '@/components'
-import { Close } from '@/components/Icons'
+import { Close } from '@/components/UI/Icons'
 
 export const Modal = ({
   animationDuration = 300,

@@ -1,5 +1,5 @@
 import { ItemAction } from '@/components'
-import { Edit, Trash } from '@/components/Icons'
+import { Edit, Trash } from '@/components/UI/Icons'
 import { ItemActionsProps } from './ItemActions.types'
 
 export const ItemActions = ({

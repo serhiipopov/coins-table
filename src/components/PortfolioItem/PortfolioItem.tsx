@@ -1,5 +1,5 @@
 import { IconButton, ItemActions, Popover } from '@/components'
-import { MoreVertical } from '@/components/Icons'
+import { MoreVertical } from '@/components/UI/Icons'
 import { PortfolioItemProps } from './PortfolioItem.types'
 import { Strings } from '@/constants'
 

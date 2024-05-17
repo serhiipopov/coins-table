@@ -1,3 +1,5 @@
+'use client'
+
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -10,11 +12,13 @@ import {
 } from '@/components/Auth'
 import { useAuth, useModal } from '@/context'
 import { useRouter } from 'next/navigation'
-import { next } from 'sucrase/dist/types/parser/tokenizer'
 
-export const SignUpForm = () => {
+export const SignUpForm = ({
+  handleSignUpChange,
+}: {
+  handleSignUpChange: () => void
+}) => {
   const { signUp, errorMessage } = useAuth()
-  const { handleModalSubmit, handleModalClose } = useModal()
   const router = useRouter()
 
   const {
@@ -39,7 +43,6 @@ export const SignUpForm = () => {
     try {
       await signUp(watch('email'), watch('password'))
       resetSignUpFields()
-      handleModalClose()
     } catch (error: any) {
       console.error(error.message)
     }
@@ -47,7 +50,7 @@ export const SignUpForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='flex w-96 flex-col gap-4 rounded-lg bg-gray-100 p-8 shadow-2xl'>
+      <div className='flex w-full flex-col gap-4 pt-4'>
         {/*<Controller*/}
         {/*  control={control}*/}
         {/*  name='name'*/}
