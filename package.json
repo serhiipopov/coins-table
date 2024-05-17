@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@next/env": "^14.2.3",
     "@types/react-transition-group": "^4.4.10",
+    "axios": "^1.6.8",
     "firebase": "^10.11.1",
     "next": "14.2.3",
     "react": "^18",

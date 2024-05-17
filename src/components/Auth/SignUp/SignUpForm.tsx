@@ -1,8 +1,8 @@
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { Button, Input } from '@/components'
-import { Strings, Urls } from '@/constants'
+import { Button, InlineAlert, Input } from '@/components'
+import { AlertType, Strings, Urls } from '@/constants'
 import {
   SignUpFormModel,
   sigUpFormSchema,
@@ -10,10 +10,11 @@ import {
 } from '@/components/Auth'
 import { useAuth, useModal } from '@/context'
 import { useRouter } from 'next/navigation'
+import { next } from 'sucrase/dist/types/parser/tokenizer'
 
 export const SignUpForm = () => {
-  const { signUp } = useAuth()
-  const { handleModalSubmit } = useModal()
+  const { signUp, errorMessage } = useAuth()
+  const { handleModalSubmit, handleModalClose } = useModal()
   const router = useRouter()
 
   const {
@@ -36,10 +37,11 @@ export const SignUpForm = () => {
 
   const onSubmit = async () => {
     try {
-      handleModalSubmit(await signUp(watch('email'), watch('password')))
+      await signUp(watch('email'), watch('password'))
       resetSignUpFields()
+      handleModalClose()
     } catch (error: any) {
-      console.log(error.message)
+      console.error(error.message)
     }
   }
 
@@ -108,6 +110,10 @@ export const SignUpForm = () => {
         {/*    />*/}
         {/*  )}*/}
         {/*/>*/}
+
+        {errorMessage && (
+          <InlineAlert type={AlertType.ERROR}>{errorMessage}</InlineAlert>
+        )}
 
         <Button className='block rounded-xl py-3' type='submit'>
           <span>{Strings.signUp}</span>

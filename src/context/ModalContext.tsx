@@ -69,6 +69,7 @@ export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
     if (promiseRef.current) {
       promiseRef.current.resolve(value)
     }
+    if (value?.errorCode) return setShowModal(true)
     setShowModal(false)
   }
 

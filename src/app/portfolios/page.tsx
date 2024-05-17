@@ -1,7 +1,13 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import { collection, DocumentData, getDocs } from '@firebase/firestore'
+import {
+  collection,
+  deleteDoc,
+  doc,
+  DocumentData,
+  getDocs,
+} from '@firebase/firestore'
 
 import {
   Button,
@@ -32,7 +38,7 @@ const Portfolio = () => {
     }
 
     fetchCoins()
-  }, [])
+  }, [coins])
 
   useEffect(() => {
     const fetchPortfolios = async () => {
@@ -48,7 +54,7 @@ const Portfolio = () => {
     }
 
     fetchPortfolios()
-  }, [])
+  }, [portfolios])
 
   const argAddCoin = {
     content: <AddCoinForm />,
@@ -70,15 +76,35 @@ const Portfolio = () => {
       .catch(() => {})
   }, [openModal])
 
+  const handleDeletePortfolio = async (portfolioId: string) => {
+    try {
+      await deleteDoc(doc(db, `${FirebasePath.portfolios}/${portfolioId}`))
+    } catch (error) {
+      console.error('Error removing document: ', error)
+    }
+  }
+
+  const handleDeleteCoin = async (coinId: string) => {
+    try {
+      await deleteDoc(doc(db, `${FirebasePath.coins}/${coinId}`))
+    } catch (error) {
+      console.error('Error removing document: ', error)
+    }
+  }
+
   return (
     <div className='ml-60 flex flex-col place-items-end p-12'>
-      <Sidebar portfolios={portfolios} handleModal={handleModalAddPortfolio} />
+      <Sidebar
+        portfolios={portfolios}
+        handleModal={handleModalAddPortfolio}
+        handleDeletePortfolio={handleDeletePortfolio}
+      />
 
       <Button className='mb-4 block' onClick={handleModalAddCoin}>
         <span>{Strings.addCoin}</span>
       </Button>
 
-      <CoinsTable coins={coins} />
+      <CoinsTable coins={coins} handleDeleteCoin={handleDeleteCoin} />
     </div>
   )
 }

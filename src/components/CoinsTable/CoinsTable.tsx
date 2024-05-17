@@ -2,7 +2,7 @@ import { Strings } from '@/constants'
 import { CoinsTableProps, IconButton, ItemActions, Popover } from '@/components'
 import { MoreHorizontal } from '@/components/Icons'
 
-export const CoinsTable = ({ coins }: CoinsTableProps) => {
+export const CoinsTable = ({ coins, handleDeleteCoin }: CoinsTableProps) => {
   return (
     <table className='coins-table'>
       <thead>
@@ -19,19 +19,20 @@ export const CoinsTable = ({ coins }: CoinsTableProps) => {
       </thead>
       <tbody>
         {coins.length > 0 ? (
-          coins.map((item, i) => (
+          coins.map((coin, i) => (
             <tr key={i}>
               <td className='text-blu-dark'>{i + 1}</td>
-              <td className='text-blu-dark'>{item.name}</td>
-              <td className='text-blu-dark'>{item.purchasePrice}</td>
-              <td className='text-blu-dark'>{item.sellingPrice}</td>
-              <td className='text-blu-dark'>{item.averagePrice}</td>
-              <td className='text-blu-dark'>{item.reasonForPurchase}</td>
-              <td className='text-blu-dark'>{item.reasonForSale}</td>
+              <td className='text-blu-dark'>{coin.name}</td>
+              <td className='text-blu-dark'>{coin.purchasePrice}</td>
+              <td className='text-blu-dark'>{coin.sellingPrice}</td>
+              <td className='text-blu-dark'>{coin.averagePrice}</td>
+              <td className='text-blu-dark'>{coin.reasonForPurchase}</td>
+              <td className='text-blu-dark'>{coin.reasonForSale}</td>
               <td>
                 <Popover
                   content={
                     <ItemActions
+                      handleDelete={() => handleDeleteCoin(coin.id)}
                       firstText={Strings.editCoin}
                       secondText={Strings.deleteCoin}
                     />

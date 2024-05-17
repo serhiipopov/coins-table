@@ -3,16 +3,20 @@ import { MoreVertical } from '@/components/Icons'
 import { PortfolioItemProps } from './PortfolioItem.types'
 import { Strings } from '@/constants'
 
-export const PortfolioItem = ({ name }: PortfolioItemProps) => {
+export const PortfolioItem = ({
+  name,
+  handleDeletePortfolio,
+}: PortfolioItemProps) => {
   return (
-    <div className='hover:bg-ext-light flex items-center justify-between rounded-xl px-3 py-2 duration-150 hover:cursor-pointer'>
-      <p className='text-blu-dark text-sm font-bold'>{name}</p>
+    <div className='flex items-center justify-between rounded-xl px-3 py-2 duration-150 hover:cursor-pointer hover:bg-ext-light'>
+      <p className='text-sm font-bold text-blu-dark'>{name}</p>
       <div>
         <Popover
           content={
             <ItemActions
               firstText={Strings.editPortfolio}
               secondText={Strings.deletePortfolio}
+              handleDelete={handleDeletePortfolio}
             />
           }
           contentClassName='left-12 -top-6 w-max px-2'

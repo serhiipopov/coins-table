@@ -18,7 +18,7 @@ export const AvatarContent = ({ letter, bgColor }: AvatarContentProps) => {
         />
         <div>
           <span>Hi,</span>
-          <p>{user.email}</p>
+          <p>{user?.email}</p>
         </div>
       </div>
 
@@ -31,7 +31,12 @@ export const AvatarContent = ({ letter, bgColor }: AvatarContentProps) => {
         </div>
 
         <div className='flex items-center justify-between'>
-          <Anchor onClick={logOut} text={Strings.logOut} primary={false} />
+          <Anchor
+            url={Urls.HOME}
+            onClick={logOut}
+            text={Strings.logOut}
+            primary={false}
+          />
           <Exit width={16} />
         </div>
       </div>

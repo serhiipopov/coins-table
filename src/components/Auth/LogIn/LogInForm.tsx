@@ -1,20 +1,24 @@
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { Button, Input } from '@/components'
-import { Strings, Urls } from '@/constants'
+import { Button, InlineAlert, Input } from '@/components'
+import { AlertType, Strings, Urls } from '@/constants'
 import {
   logInFormInitialValues,
   LogInFormModel,
   logInFormSchema,
 } from './LogInFormSchema'
 import { useAuth, useModal } from '@/context'
-import { useRouter } from 'next/navigation'
+import { getAuthErrorMessage } from '../../../../utils'
+import Link from 'next/link'
 
 export const LogInForm = () => {
-  const { logIn } = useAuth()
-  const { handleModalSubmit } = useModal()
-  const router = useRouter()
+  const { logIn, errorMessage } = useAuth()
+  const { handleModalSubmit, handleModalClose } = useModal()
+  const [loginError, setLoginError] = useState('')
+  const { push, refresh } = useRouter()
 
   const {
     control,
@@ -33,12 +37,23 @@ export const LogInForm = () => {
   }
 
   const onSubmit = async () => {
+    const data = await logIn(watch('email'), watch('password'))
+
     try {
-      handleModalSubmit(await logIn(watch('email'), watch('password')))
-      router.push(Urls.PORTFOLIO)
-      resetLogInFields()
+      handleModalSubmit(data)
+      push(Urls.PORTFOLIO)
+      if (!data.errorCode) {
+        handleModalSubmit(data)
+      } else {
+        const authErrorMessage = getAuthErrorMessage(
+          data.errorCode,
+          watch('email'),
+          data.errorMessage,
+        )
+        setLoginError(authErrorMessage ?? '')
+      }
     } catch (error: any) {
-      console.log(error.message)
+      setLoginError(error?.errorMessage)
     }
   }
 
@@ -56,7 +71,10 @@ export const LogInForm = () => {
               value={value}
               isError={!!errors?.email}
               error={errors?.email?.message?.toString()}
-              onChange={onChange}
+              onChange={event => {
+                setLoginError('')
+                onChange(event)
+              }}
             />
           )}
         />
@@ -72,10 +90,17 @@ export const LogInForm = () => {
               value={value}
               isError={!!errors?.password}
               error={errors?.password?.message?.toString()}
-              onChange={onChange}
+              onChange={event => {
+                setLoginError('')
+                onChange(event)
+              }}
             />
           )}
         />
+
+        {!!loginError?.length && (
+          <InlineAlert type={AlertType.ERROR}>{loginError}</InlineAlert>
+        )}
 
         <Button className='block rounded-xl py-3' type='submit'>
           <span>{Strings.logIn}</span>

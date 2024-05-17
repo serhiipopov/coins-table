@@ -2,16 +2,18 @@
 
 import { useCallback } from 'react'
 import { Anchor, Avatar, AvatarContent, Button, Popover } from '@/components'
-import { Strings, Urls } from '@/constants'
+import { LocalStorageKeys, Strings, Urls } from '@/constants'
 import { LogInForm, SignUpForm } from '@/components/Auth'
 import { useAuth, useModal } from '@/context'
 import { getFirstLetter } from '../../../utils'
+import { useLocalStorage } from '@/hooks'
 
 export const Header = () => {
   const { openModal } = useModal()
-  const { user, colorAvatar, isAuth } = useAuth()
+  const { user, isAuth } = useAuth()
+  const [colorAvatar] = useLocalStorage(LocalStorageKeys.COLOR_AVATAR, '')
 
-  const firstLetter = getFirstLetter(user.email)
+  const firstLetter = getFirstLetter(user?.email)
 
   const argsSignUp = {
     content: <SignUpForm />,

@@ -53,6 +53,7 @@ export const Popover = ({
       <div onClick={() => setShow(!show)}>{children}</div>
       <div
         hidden={!show}
+        onClick={() => setShow(!show)}
         className={twMerge(
           'absolute right-1.5 top-16 z-50 h-fit min-w-fit rounded-lg bg-primary-white p-2 shadow-2xl',
           contentClassName,

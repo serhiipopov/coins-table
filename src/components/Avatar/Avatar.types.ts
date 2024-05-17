@@ -1,6 +1,6 @@
 export interface AvatarProps {
   letter: string
-  bgColor: string
+  bgColor: string | null
   className?: string
   isMain?: boolean
 }
