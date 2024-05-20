@@ -20,25 +20,54 @@ import { FirebasePath, Strings } from '@/constants'
 import { useModal } from '@/context'
 import db from '../../../lib/firestore'
 
+const initialCoins = [
+  {
+    name: 'ZBC 1',
+    purchasePrice: '0.20',
+    sellingPrice: '2',
+    averagePrice: '',
+    reasonForPurchase:
+      "I've watched somebody on youtube and he said it be 2 dollars",
+    reasonForSale: '',
+  },
+  {
+    name: 'ZBC 2',
+    purchasePrice: '',
+    sellingPrice: '2',
+    averagePrice: '',
+    reasonForPurchase: "I've watched somebody",
+    reasonForSale: '',
+  },
+  {
+    name: 'ZBC 3',
+    purchasePrice: '0.20',
+    sellingPrice: '2',
+    averagePrice: '',
+    reasonForPurchase:
+      "I've watched somebody on youtube and he said it be 2 dollars I've watched somebody on youtube and he said it be 2 dollars",
+    reasonForSale: '',
+  },
+]
+
 const Portfolio = () => {
   const { openModal } = useModal()
 
   const [coins, setCoins] = useState<DocumentData[]>([])
   const [portfolios, setPortfolios] = useState<DocumentData[]>([])
 
-  useEffect(() => {
-    const fetchCoins = async () => {
-      const querySnapshot = await getDocs(collection(db, FirebasePath.coins))
-      const coinsData = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
-
-      setCoins(coinsData)
-    }
-
-    fetchCoins()
-  }, [coins])
+  // useEffect(() => {
+  //   const fetchCoins = async () => {
+  //     const querySnapshot = await getDocs(collection(db, FirebasePath.coins))
+  //     const coinsData = querySnapshot.docs.map(doc => ({
+  //       id: doc.id,
+  //       ...doc.data(),
+  //     }))
+  //
+  //     setCoins(coinsData)
+  //   }
+  //
+  //   fetchCoins()
+  // }, [coins])
 
   useEffect(() => {
     const fetchPortfolios = async () => {
@@ -104,7 +133,7 @@ const Portfolio = () => {
         <span>{Strings.addCoin}</span>
       </Button>
 
-      <CoinsTable coins={coins} handleDeleteCoin={handleDeleteCoin} />
+      <CoinsTable coins={initialCoins} handleDeleteCoin={handleDeleteCoin} />
     </div>
   )
 }

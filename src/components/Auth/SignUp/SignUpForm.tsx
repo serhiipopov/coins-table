@@ -10,7 +10,7 @@ import {
   sigUpFormSchema,
   sigUpFormInitialValues,
 } from '@/components/Auth'
-import { useAuth, useModal } from '@/context'
+import { useAuth } from '@/context'
 import { useRouter } from 'next/navigation'
 
 export const SignUpForm = ({
@@ -43,6 +43,7 @@ export const SignUpForm = ({
     try {
       await signUp(watch('email'), watch('password'))
       resetSignUpFields()
+      handleSignUpChange()
     } catch (error: any) {
       console.error(error.message)
     }

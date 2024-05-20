@@ -17,15 +17,15 @@
 }
 
 .coins-table th:first-child {
-  @apply w-32 border-x border-gray-300 px-3 py-3;
+  @apply w-12 border-x border-gray-300 px-3 py-3;
 }
 
 .coins-table th:last-child {
-  @apply w-32 border-x border-gray-300 px-3 py-3;
+  @apply w-12 border-x border-gray-300 px-3 py-3;
 }
 
 .coins-table th {
-  @apply border-x px-3 py-4 text-center;
+  @apply w-24 border-x px-3 py-4 text-center;
 }
 
 .coins-table tbody {

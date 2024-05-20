@@ -35,7 +35,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       if (user) {
         setUser({ ...user })
-        // setIsAuth(!!user)
       } else {
         setUser(null)
       }

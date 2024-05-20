@@ -48,7 +48,7 @@ export const Popover = ({
       ref={wrapperRef}
       onMouseEnter={handleMouseOver}
       onMouseLeave={handleMouseLeft}
-      className='relative flex h-fit w-fit justify-center'
+      className='relative flex h-fit w-fit justify-center hover:cursor-pointer'
     >
       <div onClick={() => setShow(!show)}>{children}</div>
       <div
@@ -59,7 +59,7 @@ export const Popover = ({
           contentClassName,
         )}
       >
-        <div className=''>{content}</div>
+        <div>{content}</div>
       </div>
     </div>
   )
