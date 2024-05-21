@@ -23,8 +23,8 @@ import db from '../../../lib/firestore'
 const initialCoins = [
   {
     name: 'ZBC 1',
-    purchasePrice: '0.20',
-    sellingPrice: '2',
+    purchasePrice: '0.30',
+    sellingPrice: '1',
     averagePrice: '',
     reasonForPurchase:
       "I've watched somebody on youtube and he said it be 2 dollars",
@@ -32,8 +32,8 @@ const initialCoins = [
   },
   {
     name: 'ZBC 2',
-    purchasePrice: '',
-    sellingPrice: '2',
+    purchasePrice: '0.56',
+    sellingPrice: '3',
     averagePrice: '',
     reasonForPurchase: "I've watched somebody",
     reasonForSale: '',

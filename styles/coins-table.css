@@ -9,7 +9,7 @@
 }
 
 .coins-table thead th:last-child {
-  @apply w-16;
+  @apply w-10;
 }
 
 .coins-table tr {
@@ -17,29 +17,29 @@
 }
 
 .coins-table th:first-child {
-  @apply w-12 border-x border-gray-300 px-3 py-3;
+  @apply w-4 px-2 py-3;
 }
 
 .coins-table th:last-child {
-  @apply w-12 border-x border-gray-300 px-3 py-3;
+  @apply w-4 px-2 py-3;
 }
 
 .coins-table th {
-  @apply w-24 border-x px-3 py-4 text-center;
+  @apply w-16 border-x px-2 py-4 text-center;
 }
 
 .coins-table tbody {
-  @apply border border-gray-300 text-black;
+  @apply border-gray-300 text-black;
 }
 
 .coins-table td:first-child {
-  @apply border-gray-300 px-2 py-2;
+  @apply px-2;
 }
 
 .coins-table td:last-child {
-  @apply border-y border-gray-300 px-3 py-3;
+  @apply flex justify-center;
 }
 
 .coins-table td {
-  @apply px-3 py-3 text-center;
+  @apply px-3 py-2 text-center;
 }

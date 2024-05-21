@@ -59,7 +59,7 @@ export const Popover = ({
           contentClassName,
         )}
       >
-        <div>{content}</div>
+        <div className='w-fit'>{content}</div>
       </div>
     </div>
   )

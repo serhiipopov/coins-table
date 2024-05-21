@@ -29,4 +29,6 @@ export enum Strings {
   editCoin = 'Edit coin',
   deleteCoin = 'Delete coin',
   myPortfolios = 'My portfolios',
+  total = 'Total',
+  noResults = 'No results',
 }
