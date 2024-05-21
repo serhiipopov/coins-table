@@ -14,7 +14,6 @@ import {
   Chevron,
 } from '@/components'
 import { useTotalPrice } from '@/hooks'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 export const CoinsTable = ({ coins, handleDeleteCoin }: CoinsTableProps) => {
@@ -133,15 +132,18 @@ export const CoinsTable = ({ coins, handleDeleteCoin }: CoinsTableProps) => {
                 ) : (
                   <td></td>
                 )}
-                <td
-                  className={twMerge(
-                    'text-blu-dark duration-300 hover:cursor-pointer hover:bg-ext-light',
-                    isLastRow && 'text-lg font-bold',
-                  )}
-                  onClick={() => push(`${Urls.COIN}/${coin?.id ?? coinNumber}`)}
-                >
-                  {coin.name}
-                </td>
+                {!isLastRow ? (
+                  <td
+                    className={twMerge(
+                      'text-blu-dark duration-300 hover:cursor-pointer hover:bg-ext-light',
+                    )}
+                    onClick={() => `${Urls.COIN}/${coin?.id ?? coinNumber}`}
+                  >
+                    {coin.name}
+                  </td>
+                ) : (
+                  <td className='font-bold text-blu-dark'>{coin.name}</td>
+                )}
                 <td className='text-blu-dark'>
                   {coin.purchasePrice ? `${coin.purchasePrice} $` : ''}
                 </td>
