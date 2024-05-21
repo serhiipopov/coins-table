@@ -35,7 +35,7 @@ export const Header = () => {
   }, [openModal])
 
   return (
-    <header className='z-50 box-border flex h-14 w-full flex-row items-center justify-between bg-white px-6 shadow'>
+    <header className='z-50 box-border flex h-14 w-full flex-row items-center justify-between bg-white px-6 shadow-md'>
       <div className='flex items-center gap-20'>
         <p className='text-sm font-bold'>CoinsTable</p>
         <div className='flex items-center gap-3'>

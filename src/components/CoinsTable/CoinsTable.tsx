@@ -2,7 +2,7 @@
 
 import { twMerge } from 'tailwind-merge'
 import { useMemo, useState } from 'react'
-import { Strings } from '@/constants'
+import { Strings, Urls } from '@/constants'
 import {
   CoinsTableProps,
   IconButton,
@@ -14,6 +14,8 @@ import {
   Chevron,
 } from '@/components'
 import { useTotalPrice } from '@/hooks'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export const CoinsTable = ({ coins, handleDeleteCoin }: CoinsTableProps) => {
   const totalPurchasePrice = useTotalPrice(coins, CoinPrice.PURCHASE_PRICE)
@@ -23,6 +25,7 @@ export const CoinsTable = ({ coins, handleDeleteCoin }: CoinsTableProps) => {
     key: CoinPrice.PURCHASE_PRICE,
     direction: DirectionSort.ASCENDING,
   })
+  const { push } = useRouter()
 
   const sortedCoins = useMemo(() => {
     const sorted = [...coins]
@@ -121,19 +124,21 @@ export const CoinsTable = ({ coins, handleDeleteCoin }: CoinsTableProps) => {
         {sortedCoins.length > 0 ? (
           sortedCoins.map((coin, i) => {
             const isLastRow = i === sortedCoins?.length - 1
+            const coinNumber = i + 1
 
             return (
               <tr key={i}>
                 {!isLastRow ? (
-                  <td className='text-blu-dark'>{i + 1}</td>
+                  <td className='text-blu-dark'>{coinNumber}</td>
                 ) : (
                   <td></td>
                 )}
                 <td
                   className={twMerge(
-                    'text-blu-dark',
+                    'text-blu-dark duration-300 hover:cursor-pointer hover:bg-ext-light',
                     isLastRow && 'text-lg font-bold',
                   )}
+                  onClick={() => push(`${Urls.COIN}/${coin?.id ?? coinNumber}`)}
                 >
                   {coin.name}
                 </td>
